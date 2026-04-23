@@ -27,13 +27,10 @@
     </aside>
     <article class="col-12 col-md-9">
       <p>{{ post.text|linebreaksbr }}</p>
+      {% if post.author == user %}
+        <a class="btn btn-sm btn-primary" href="{% url 'posts:post_edit' post.id %}">Редактировать</a>
+      {% endif %}
     </article>
   </div>
 </div>
 {% endblock %}
-{% if post.author == user %}
-  <a class="btn btn-sm btn-primary" href="{% url 'posts:post_edit' post.id %}">Редактировать</a>
-{% endif %}
-{% if post.group %}
-  <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
-{% endif %}
